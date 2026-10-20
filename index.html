@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🐋 大富翁 3D</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #0a1420;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  #scene { display: block; width: 100%; height: 100%; }
+
+  #hint {
+    position: fixed; left: 50%; top: 14px; transform: translateX(-50%);
+    color: #cfe4f5; font-size: 13px; background: rgba(8, 20, 34, .78);
+    padding: 7px 16px; border-radius: 18px; border: 1px solid rgba(120, 180, 215, .35);
+    white-space: nowrap; pointer-events: none; backdrop-filter: blur(6px); z-index: 20;
+  }
+
+  #ui {
+    position: fixed; inset: 0; pointer-events: none; z-index: 10;
+  }
+  .panel {
+    position: absolute; pointer-events: auto;
+    background: rgba(8, 20, 34, .82); border: 1px solid rgba(120, 180, 215, .28);
+    border-radius: 14px; backdrop-filter: blur(10px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .45); color: #cfe4f5; font-size: 13px;
+  }
+
+  /* 左侧玩家列表 */
+  #players { left: 14px; top: 14px; width: 190px; padding: 10px; }
+  #players .pl { display: flex; align-items: center; gap: 7px; padding: 6px 8px;
+    border-radius: 9px; margin-bottom: 5px; background: rgba(255,255,255,.03); }
+  #players .pl.active { background: rgba(255, 207, 77, .16);
+    box-shadow: inset 0 0 0 1px rgba(255, 207, 77, .45); }
+  #players .pl i { width: 10px; height: 10px; border-radius: 50%; display: block; flex: none; }
+  #players .pl b { font-weight: 700; font-size: 12px; flex: 1; }
+  #players .pl span { font-size: 12px; color: #ffd86a; font-weight: 700; }
+
+  /* 右侧地块信息 + 操作 */
+  #right { right: 14px; top: 14px; width: 210px; padding: 12px; }
+  #tileinfo .ti-name { font-size: 15px; font-weight: 800; color: #ffd86a;
+    margin-bottom: 8px; letter-spacing: 1px; }
+  #tileinfo .ti-row { display: flex; justify-content: space-between;
+    padding: 4px 0; border-bottom: 1px dashed rgba(120,180,215,.18); font-size: 12px; }
+  #tileinfo .ti-row:last-child { border-bottom: none; }
+  #tileinfo .ti-row span { color: #7fa8c8; }
+  #tileinfo .dim { color: #5a7a95; font-size: 12px; }
+
+  #diceresult { margin-top: 10px; text-align: center; font-size: 20px;
+    font-weight: 800; color: #ffd86a; letter-spacing: 2px; min-height: 26px; }
+
+  #actions { margin-top: 12px; display: grid; gap: 7px; }
+  #actions button {
+    padding: 9px; font-size: 13px; font-weight: 700; font-family: inherit;
+    border-radius: 10px; border: 1px solid rgba(120,180,215,.4);
+    background: linear-gradient(160deg, #1c3a52, #12283a); color: #cfe4f5; cursor: pointer;
+  }
+  #actions button:hover { background: linear-gradient(160deg, #24496a, #16324a); }
+  #actions button:active { transform: scale(.97); }
+  #actions button:disabled { opacity: .45; cursor: default; }
+  #btnRoll { background: linear-gradient(160deg, #c9a961, #8a6f30) !important;
+    color: #1a1410 !important; border-color: #e0c477 !important; font-size: 15px !important; }
+
+  /* 日志 */
+  #log { left: 14px; bottom: 14px; width: 300px; max-height: 150px;
+    padding: 10px; overflow-y: auto; font-size: 12px; line-height: 1.65; color: #9fc0da; }
+  #log div { opacity: .92; }
+
+  #ver { position: fixed; right: 10px; bottom: 8px; color: rgba(200,225,245,.4);
+    font-size: 10px; z-index: 20; }
+
+  @media (max-width: 640px) {
+    #players { width: 132px; font-size: 11px; padding: 7px; }
+    #players .pl b, #players .pl span { font-size: 10px; }
+    #right { width: 150px; padding: 9px; }
+    #log { width: calc(100% - 28px); max-height: 90px; }
+    #hint { font-size: 11px; padding: 6px 11px; }
+  }
+
+  @keyframes shake {
+    0% { transform: translate(0,0) }
+    18% { transform: translate(-9px, 6px) }
+    36% { transform: translate(7px, -5px) }
+    54% { transform: translate(-5px, 3px) }
+    72% { transform: translate(3px, -2px) }
+    100% { transform: translate(0,0) }
+  }
+  @keyframes shakeBody {
+    0% { transform: translate(0,0) }
+    20% { transform: translate(6px, -4px) }
+    40% { transform: translate(-5px, 4px) }
+    60% { transform: translate(3px, -2px) }
+    80% { transform: translate(-2px, 1px) }
+    100% { transform: translate(0,0) }
+  }
+
+  /* 加载遮罩 */
+  #loading {
+    position: fixed; inset: 0; z-index: 999; display: flex;
+    align-items: center; justify-content: center;
+    background: radial-gradient(circle at 50% 40%, #16324a 0%, #0a1420 70%);
+    transition: opacity .45s ease;
+  }
+  #loading.hide { opacity: 0; pointer-events: none; }
+  .ld-box { text-align: center; color: #cfe4f5; width: 78%; max-width: 300px; }
+  .ld-icon { font-size: 46px; margin-bottom: 12px; animation: bob 1.6s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-9px) } }
+  .ld-title { font-size: 16px; font-weight: 800; letter-spacing: 2px; margin-bottom: 6px; color: #ffd86a; }
+  .ld-sub { font-size: 12px; color: #7fa8c8; margin-bottom: 18px; }
+  .ld-bar { height: 7px; border-radius: 4px; background: rgba(255,255,255,.09); overflow: hidden; }
+  .ld-bar i { display: block; height: 100%; width: 0%; border-radius: 4px;
+    background: linear-gradient(90deg, #6fb8ff, #ffd86a); transition: width .3s ease; }
+  .ld-pct { margin-top: 9px; font-size: 12px; color: #9fc0da; font-variant-numeric: tabular-nums; }
+
+  /* ===== 2026-10-18 开局设置页 ===== */
+  #setup {
+    position: fixed; inset: 0; z-index: 960; display: flex;
+    align-items: center; justify-content: center; padding: 16px;
+    background: radial-gradient(circle at 50% 35%, #17324b 0%, #0a1420 72%);
+  }
+  #setup.hidden { display: none; }
+  .se-card { width: 100%; max-width: 340px; max-height: 92vh; overflow-y: auto;
+    background: linear-gradient(165deg, #16283a, #0d1725);
+    border: 1.5px solid rgba(255,207,77,.45); border-radius: 18px;
+    padding: 18px; box-shadow: 0 18px 50px rgba(0,0,0,.6); }
+  .se-title { font-size: 19px; font-weight: 900; color: #ffd86a; text-align: center;
+    letter-spacing: 3px; margin-bottom: 4px; }
+  .se-sub { font-size: 11px; color: #7fa8c8; text-align: center; margin-bottom: 16px; }
+  .se-row { display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 2px; border-bottom: 1px dashed rgba(120,180,215,.2); margin-bottom: 12px; }
+  .se-row span { font-size: 13px; color: #cfe4f5; }
+  .se-num { display: flex; align-items: center; gap: 10px; }
+  .se-num button { width: 30px; height: 30px; border-radius: 9px; font-size: 17px;
+    border: 1px solid rgba(120,180,215,.4); background: rgba(255,255,255,.06);
+    color: #cfe4f5; cursor: pointer; line-height: 1; }
+  .se-num b { font-size: 17px; color: #ffd86a; min-width: 22px; text-align: center; }
+  .se-seats { display: grid; gap: 6px; margin-bottom: 14px; }
+  .se-seat { display: flex; align-items: center; gap: 8px; padding: 7px 9px;
+    background: rgba(255,255,255,.04); border-radius: 10px; }
+  .se-seat i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .se-seat .nm { font-size: 12px; color: #cfe4f5; flex: 1; font-weight: 700; }
+  .se-seat select { font-size: 11px; padding: 4px 6px; border-radius: 7px;
+    background: #0c1826; color: #cfe4f5; border: 1px solid rgba(120,180,215,.35);
+    font-family: inherit; }
+  .se-start { display: block; width: 100%; padding: 13px; font-size: 16px;
+    font-weight: 900; font-family: inherit; letter-spacing: 4px; border-radius: 12px;
+    border: none; cursor: pointer; color: #1a1410;
+    background: linear-gradient(160deg, #ffd86a, #d9a63a);
+    box-shadow: 0 5px 0 #a87e20, 0 10px 26px rgba(0,0,0,.45); }
+  .se-start:active { transform: translateY(3px); box-shadow: 0 2px 0 #a87e20; }
+
+  /* ===== 界面瘦身：收窄两侧，给棋盘让路 ===== */
+  #players { width: 152px; padding: 8px; }
+  #players .pl { padding: 4px 6px; margin-bottom: 3px; }
+  #players .pl b { font-size: 11px; }
+  #players .pl span { font-size: 10.5px; }
+  #right { width: 168px; padding: 9px; }
+  #actions { gap: 5px; }
+  #actions button { padding: 7px; font-size: 12px; }
+  #btnRoll { font-size: 14px !important; }
+  #log { width: 210px; max-height: 96px; font-size: 11px; padding: 8px; }
+  #tileinfo .ti-name { font-size: 13px; margin-bottom: 6px; }
+  #tileinfo .ti-row { font-size: 11px; padding: 3px 0; }
+  #diceresult { font-size: 16px; min-height: 20px; margin-top: 6px; }
+
+  @media (max-width: 640px) {
+    #players { width: 108px; padding: 6px; }
+    #players .pl b { font-size: 9.5px; }
+    #players .pl span { font-size: 9px; }
+    #right { width: 124px; padding: 7px; }
+    #actions button { padding: 6px; font-size: 10.5px; }
+    #btnRoll { font-size: 12px !important; }
+    #log { width: calc(100% - 20px); max-height: 68px; font-size: 10px; }
+  }
+
+
+  /* ===== 2026-10-18 手机上再瘦身：两侧改成贴边小条，棋盘占满 ===== */
+  @media (max-width: 640px) {
+    #players {
+      left: 4px; top: 4px; width: 86px; padding: 4px;
+      background: rgba(8,20,34,.72); border-radius: 9px;
+    }
+    #players .pl {
+      padding: 2px 4px; margin-bottom: 1px; gap: 4px;
+      background: none; border-radius: 6px;
+    }
+    #players .pl i { width: 7px; height: 7px; }
+    #players .pl b { font-size: 8.5px; }
+    #players .pl span { font-size: 8.5px; }
+
+    #right {
+      right: 4px; top: 4px; width: 92px; padding: 5px;
+      background: rgba(8,20,34,.72); border-radius: 9px;
+    }
+    #tileinfo .ti-name { font-size: 10px; margin-bottom: 3px; letter-spacing: 0; }
+    #tileinfo .ti-row { font-size: 8.5px; padding: 1.5px 0; }
+    #tileinfo .dim { font-size: 8.5px; }
+    #diceresult { font-size: 12px; min-height: 15px; margin-top: 3px; }
+
+    #actions { margin-top: 5px; gap: 3px; }
+    #actions button {
+      padding: 5px 4px; font-size: 9px; border-radius: 7px;
+      letter-spacing: 0; white-space: nowrap;
+    }
+    #btnRoll { font-size: 10.5px !important; }
+
+    #log {
+      left: 4px; bottom: 4px; width: 140px; max-height: 54px;
+      font-size: 8.5px; padding: 4px 6px; line-height: 1.45;
+      background: rgba(8,20,34,.72);
+    }
+    #hint { font-size: 10px; padding: 4px 9px; top: 4px; }
+  }
+
+  /* 2026-10-19：地砖悬浮标签（CSS2D）——原缺样式导致默认字号过大，远处看成一坨 */
+  .tile-float-label {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 1px; padding: 2px 6px; border-radius: 6px;
+    background: rgba(10, 20, 32, .72);
+    border: 1px solid rgba(240, 199, 94, .28);
+    white-space: nowrap; pointer-events: none;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.15;
+    max-width: 84px;
+  }
+  .tfl-icon { font-size: 13px; line-height: 1.1; }
+  .tfl-name {
+    font-size: 10px; font-weight: 700; color: #f4ecd8;
+    max-width: 76px; overflow: hidden; text-overflow: ellipsis;
+  }
+  .tfl-sub { font-size: 9px; color: #a8b6c4; }
+  @media (max-width: 520px) {
+    .tile-float-label { padding: 1px 4px; max-width: 66px; }
+    .tfl-icon { font-size: 11px; }
+    .tfl-name { font-size: 8.5px; max-width: 58px; }
+    .tfl-sub { font-size: 8px; }
+  }
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="hint">初始化…</div>
+
+<!-- 2026-10-18：加载遮罩（手机建 3D 场景慢，给个明确提示，别让人以为卡死） -->
+<div id="loading">
+  <div class="ld-box">
+    <div class="ld-icon">🐋</div>
+    <div class="ld-title">正在构建 3D 棋盘</div>
+    <div class="ld-sub">手机性能有限，请稍等</div>
+    <div class="ld-bar"><i id="ldfill"></i></div>
+    <div class="ld-pct" id="ldpct">0%</div>
+    <div id="diag" style="margin-top:16px;font-size:10px;color:#5a7a95;line-height:1.7;text-align:left;word-break:break-all;"></div>
+  </div>
+</div>
+
+
+<!-- 2026-10-18：开局设置 —— 人数 + 每位真人/AI -->
+<div id="setup">
+  <div class="se-card">
+    <div class="se-title">🐋 大富翁 · 3D</div>
+    <div class="se-sub">选人数，给每个位置安排真人或电脑</div>
+    <div class="se-row">
+      <span>玩家人数</span>
+      <div class="se-num">
+        <button type="button" id="seMinus">−</button>
+        <b id="seCount">4</b>
+        <button type="button" id="sePlus">＋</button>
+      </div>
+    </div>
+    <div id="seSeats" class="se-seats"></div>
+    <button id="seStart" class="se-start">▶ 开始游戏</button>
+  </div>
+</div>
+
+<div id="ui">
+  <div id="players" class="panel"></div>
+  <div id="right" class="panel">
+    <div id="tileinfo"><div class="dim">点棋盘上的格子看详情</div></div>
+    <div id="diceresult"></div>
+    <div id="actions">
+      <button id="btnRoll">🎲 掷骰子</button>
+      <button id="btnBuy">💰 买下地块</button>
+      <button id="btnBuild">🏗️ 盖房升级</button>
+      <button id="btnSell">💸 卖掉地盘</button>
+      <button id="btnEnd">➡️ 结束回合</button>
+    </div>
+  </div>
+  <div id="log" class="panel"></div>
+</div>
+
+<div id="ver">v1.12.0-玄枢版·修AI掷骰锁 20261020</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

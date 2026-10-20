@@ -1,0 +1,1086 @@
+{
+ "version": "v3-老爹审查版",
+ "note": "108星宿数据｜只作编号与命名，不涉神格科仪｜底线：不弹窗选目标、不改过路费公式、不调外部系统",
+ "stars": [
+  {
+   "name": "天魁星",
+   "person": "宋江",
+   "type": "gang",
+   "idx": 1,
+   "title": "大哥分红",
+   "effect_type": "percent_gain",
+   "value": 10,
+   "text": "从银行领取当前现金的 10%"
+  },
+  {
+   "name": "天罡星",
+   "person": "卢俊义",
+   "type": "gang",
+   "idx": 2,
+   "title": "武神附体",
+   "effect_type": "free_rent",
+   "value": 3,
+   "text": "接下来 3 次踩中对手地皮免交过路费"
+  },
+  {
+   "name": "天机星",
+   "person": "吴用",
+   "type": "gang",
+   "idx": 3,
+   "title": "智谋",
+   "effect_type": "extra_roll",
+   "value": 3,
+   "text": "立刻再掷一次骰子"
+  },
+  {
+   "name": "天闲星",
+   "person": "公孙胜",
+   "type": "gang",
+   "idx": 4,
+   "title": "法术传送",
+   "effect_type": "random_move_pm",
+   "value": 0,
+   "text": "随机前进或后退 3~6 步"
+  },
+  {
+   "name": "天勇星",
+   "person": "关胜",
+   "type": "gang",
+   "idx": 5,
+   "title": "强制收购",
+   "effect_type": "force_buy",
+   "value": 68,
+   "text": "强制买下当前地标（原价 +68%）"
+  },
+  {
+   "name": "天雄星",
+   "person": "林冲",
+   "type": "gang",
+   "idx": 6,
+   "title": "逼债",
+   "effect_type": "collect_percent",
+   "value": 5,
+   "text": "指定对手向你支付总资产的 5%"
+  },
+  {
+   "name": "天猛星",
+   "person": "秦明",
+   "type": "gang",
+   "idx": 7,
+   "title": "强拆",
+   "effect_type": "demolish",
+   "value": 3,
+   "text": "指定摧毁对手一栋已建建筑"
+  },
+  {
+   "name": "天威星",
+   "person": "呼延灼",
+   "type": "gang",
+   "idx": 8,
+   "title": "全场威压",
+   "effect_type": "all_lose",
+   "value": 1000,
+   "text": "全场对手每人扣除 1000"
+  },
+  {
+   "name": "天英星",
+   "person": "花荣",
+   "type": "gang",
+   "idx": 9,
+   "title": "精准狙击",
+   "effect_type": "limit_move",
+   "value": 3,
+   "text": "指定对手下回合只能走 3 步"
+  },
+  {
+   "name": "天贵星",
+   "person": "柴进",
+   "type": "gang",
+   "idx": 10,
+   "title": "免罪金牌",
+   "effect_type": "cleanse",
+   "value": 0,
+   "text": "消除自身所有负面状态，并获得出狱许可证"
+  },
+  {
+   "name": "天富星",
+   "person": "李应",
+   "type": "gang",
+   "idx": 11,
+   "title": "五折优惠",
+   "effect_type": "half_price",
+   "value": 3,
+   "text": "下回合购买地皮五折优惠"
+  },
+  {
+   "name": "天满星",
+   "person": "朱仝",
+   "type": "gang",
+   "idx": 12,
+   "title": "资产满溢",
+   "effect_type": "fill_money",
+   "value": 0,
+   "text": "现金补足到最贵地皮的价格"
+  },
+  {
+   "name": "天孤星",
+   "person": "鲁智深",
+   "type": "gang",
+   "idx": 13,
+   "title": "百毒不侵",
+   "effect_type": "free_rent",
+   "value": 7,
+   "text": "接下来 7 次踩中对手地皮免交过路费"
+  },
+  {
+   "name": "天伤星",
+   "person": "武松",
+   "type": "gang",
+   "idx": 14,
+   "title": "绝地反击",
+   "effect_type": "reflect",
+   "value": 3,
+   "text": "下一次受到负面效果时反弹给施放者"
+  },
+  {
+   "name": "天立星",
+   "person": "董平",
+   "type": "gang",
+   "idx": 15,
+   "title": "强行插队",
+   "effect_type": "extra_roll",
+   "value": 3,
+   "text": "立刻再掷一次骰子"
+  },
+  {
+   "name": "天捷星",
+   "person": "张清",
+   "type": "gang",
+   "idx": 16,
+   "title": "飞石打人",
+   "effect_type": "jail_random",
+   "value": 0,
+   "text": "随机把一名对手送进监狱"
+  },
+  {
+   "name": "天暗星",
+   "person": "杨志",
+   "type": "gang",
+   "idx": 17,
+   "title": "运势黯淡",
+   "effect_type": "double_dice",
+   "value": 3,
+   "text": "下回合骰子点数翻倍"
+  },
+  {
+   "name": "天佑星",
+   "person": "徐宁",
+   "type": "gang",
+   "idx": 18,
+   "title": "神佑",
+   "effect_type": "bankrupt_shield",
+   "value": 3,
+   "text": "破产时保留 3 并免死一次"
+  },
+  {
+   "name": "天空星",
+   "person": "索超",
+   "type": "gang",
+   "idx": 19,
+   "title": "急躁",
+   "effect_type": "move",
+   "value": 24,
+   "text": "前进 24 格"
+  },
+  {
+   "name": "天速星",
+   "person": "戴宗",
+   "type": "gang",
+   "idx": 20,
+   "title": "神行太保",
+   "effect_type": "double_dice",
+   "value": 3,
+   "text": "下回合骰子点数翻倍"
+  },
+  {
+   "name": "天异星",
+   "person": "刘唐",
+   "type": "gang",
+   "idx": 21,
+   "title": "抢夺",
+   "effect_type": "steal_percent",
+   "value": 15,
+   "text": "随机偷取一名对手 15% 现金"
+  },
+  {
+   "name": "天杀星",
+   "person": "李逵",
+   "type": "gang",
+   "idx": 22,
+   "title": "杀神降临",
+   "effect_type": "jail_one",
+   "value": 0,
+   "text": "指定对手直接进监狱，不得保释"
+  },
+  {
+   "name": "天微星",
+   "person": "史进",
+   "type": "gang",
+   "idx": 23,
+   "title": "缴械",
+   "effect_type": "disarm",
+   "value": 68,
+   "text": "全场对手随机丢失一张免罪卡/免租卡；无卡则扣 10% 现金"
+  },
+  {
+   "name": "天究星",
+   "person": "穆弘",
+   "type": "gang",
+   "idx": 24,
+   "title": "搜刮",
+   "effect_type": "per_unowned",
+   "value": 340,
+   "text": "每有一块未售出地皮，你获得 340"
+  },
+  {
+   "name": "天退星",
+   "person": "雷横",
+   "type": "gang",
+   "idx": 25,
+   "title": "强制后退",
+   "effect_type": "move",
+   "value": -17,
+   "text": "后退 5 格"
+  },
+  {
+   "name": "天寿星",
+   "person": "李俊",
+   "type": "gang",
+   "idx": 26,
+   "title": "水军统领",
+   "effect_type": "double_dice",
+   "value": 3,
+   "text": "下回合骰子点数翻倍"
+  },
+  {
+   "name": "天剑星",
+   "person": "阮小二",
+   "type": "gang",
+   "idx": 27,
+   "title": "免过路费",
+   "effect_type": "free_rent",
+   "value": 7,
+   "text": "接下来 7 次踩中对手地皮免交过路费"
+  },
+  {
+   "name": "天平星",
+   "person": "张横",
+   "type": "gang",
+   "idx": 28,
+   "title": "绝对平均",
+   "effect_type": "balance",
+   "value": 0,
+   "text": "全场玩家现金强制平均化"
+  },
+  {
+   "name": "天罪星",
+   "person": "阮小五",
+   "type": "gang",
+   "idx": 29,
+   "title": "免死金牌",
+   "effect_type": "grant_toll_pass",
+   "value": 3,
+   "text": "立刻获得一张「免交一次过路费」的护符"
+  },
+  {
+   "name": "天损星",
+   "person": "张顺",
+   "type": "gang",
+   "idx": 30,
+   "title": "浪里白条",
+   "effect_type": "shield",
+   "value": 3,
+   "text": "免疫下一次所有伤害"
+  },
+  {
+   "name": "天败星",
+   "person": "阮小七",
+   "type": "gang",
+   "idx": 31,
+   "title": "绝地补贴",
+   "effect_type": "comeback",
+   "value": 1700,
+   "text": "现金低于 1000 时，银行发救济金 1700"
+  },
+  {
+   "name": "天牢星",
+   "person": "解珍",
+   "type": "gang",
+   "idx": 32,
+   "title": "反囚禁",
+   "effect_type": "jail_companion",
+   "value": 3,
+   "text": "自己若进监狱，拉一名对手陪同"
+  },
+  {
+   "name": "天慧星",
+   "person": "解宝",
+   "type": "gang",
+   "idx": 33,
+   "title": "点石成金",
+   "effect_type": "free_upgrade_or_cash",
+   "value": 3,
+   "text": "随机一处自有地标免费升 3 级；无地皮则折算 300 现金"
+  },
+  {
+   "name": "天暴星",
+   "person": "燕青",
+   "type": "gang",
+   "idx": 34,
+   "title": "抢夺地产",
+   "effect_type": "steal_property",
+   "value": 3,
+   "text": "随机让渡对手一座未建满的地标"
+  },
+  {
+   "name": "天哭星",
+   "person": "朱武",
+   "type": "gang",
+   "idx": 35,
+   "title": "破产保护",
+   "effect_type": "bankrupt_save",
+   "value": 34,
+   "text": "破产时豁免，并保留 34% 资产"
+  },
+  {
+   "name": "天巧星",
+   "person": "石秀",
+   "type": "gang",
+   "idx": 36,
+   "title": "巧夺天工",
+   "effect_type": "free_upgrade",
+   "value": 3,
+   "text": "免费升级自己一处地标一级"
+  },
+  {
+   "name": "地魁星",
+   "person": "朱武",
+   "type": "di",
+   "idx": 1,
+   "title": "魁首",
+   "effect_type": "gain",
+   "value": 700,
+   "text": "从银行领取 700"
+  },
+  {
+   "name": "地煞星",
+   "person": "",
+   "type": "di",
+   "idx": 2,
+   "title": "煞气",
+   "effect_type": "all_lose",
+   "value": 340,
+   "text": "全场对手每人扣除 340"
+  },
+  {
+   "name": "地勇星",
+   "person": "",
+   "type": "di",
+   "idx": 3,
+   "title": "勇进",
+   "effect_type": "move",
+   "value": 14,
+   "text": "前进 14 格"
+  },
+  {
+   "name": "地杰星",
+   "person": "",
+   "type": "di",
+   "idx": 4,
+   "title": "杰出",
+   "effect_type": "gain",
+   "value": 600,
+   "text": "从银行领取 600"
+  },
+  {
+   "name": "地雄星",
+   "person": "",
+   "type": "di",
+   "idx": 5,
+   "title": "雄踞",
+   "effect_type": "gain",
+   "value": 600,
+   "text": "从银行领取 600"
+  },
+  {
+   "name": "地威星",
+   "person": "",
+   "type": "di",
+   "idx": 6,
+   "title": "威势",
+   "effect_type": "all_lose",
+   "value": 270,
+   "text": "全场对手每人扣除 270"
+  },
+  {
+   "name": "地英星",
+   "person": "",
+   "type": "di",
+   "idx": 7,
+   "title": "英气",
+   "effect_type": "gain",
+   "value": 500,
+   "text": "从银行领取 500"
+  },
+  {
+   "name": "地奇星",
+   "person": "",
+   "type": "di",
+   "idx": 8,
+   "title": "奇遇",
+   "effect_type": "random_gain",
+   "value": 850,
+   "text": "随机获得 100~400"
+  },
+  {
+   "name": "地猛星",
+   "person": "",
+   "type": "di",
+   "idx": 9,
+   "title": "猛冲",
+   "effect_type": "move",
+   "value": 17,
+   "text": "前进 17 格"
+  },
+  {
+   "name": "地文星",
+   "person": "",
+   "type": "di",
+   "idx": 10,
+   "title": "文思",
+   "effect_type": "gain",
+   "value": 550,
+   "text": "从银行领取 550"
+  },
+  {
+   "name": "地正星",
+   "person": "",
+   "type": "di",
+   "idx": 11,
+   "title": "正直",
+   "effect_type": "shield",
+   "value": 3,
+   "text": "免疫下一次所有伤害"
+  },
+  {
+   "name": "地阔星",
+   "person": "",
+   "type": "di",
+   "idx": 12,
+   "title": "阔绰",
+   "effect_type": "gain",
+   "value": 650,
+   "text": "从银行领取 650"
+  },
+  {
+   "name": "地阖星",
+   "person": "",
+   "type": "di",
+   "idx": 13,
+   "title": "阖家",
+   "effect_type": "gain",
+   "value": 600,
+   "text": "从银行领取 600"
+  },
+  {
+   "name": "地强星",
+   "person": "",
+   "type": "di",
+   "idx": 14,
+   "title": "强势",
+   "effect_type": "collect_one",
+   "value": 340,
+   "text": "指定对手向你支付 340"
+  },
+  {
+   "name": "地暗星",
+   "person": "",
+   "type": "di",
+   "idx": 15,
+   "title": "暗算",
+   "effect_type": "lose",
+   "value": 410,
+   "text": "损失 410"
+  },
+  {
+   "name": "地轴星",
+   "person": "",
+   "type": "di",
+   "idx": 16,
+   "title": "轴心",
+   "effect_type": "move",
+   "value": 10,
+   "text": "前进 10 格"
+  },
+  {
+   "name": "地会星",
+   "person": "",
+   "type": "di",
+   "idx": 17,
+   "title": "会盟",
+   "effect_type": "collect_all",
+   "value": 100,
+   "text": "每位对手向你支付 100"
+  },
+  {
+   "name": "地佐星",
+   "person": "",
+   "type": "di",
+   "idx": 18,
+   "title": "佐助",
+   "effect_type": "gain",
+   "value": 500,
+   "text": "从银行领取 500"
+  },
+  {
+   "name": "地佑星",
+   "person": "",
+   "type": "di",
+   "idx": 19,
+   "title": "佑护",
+   "effect_type": "jail_card",
+   "value": 0,
+   "text": "获得一次免费出狱机会"
+  },
+  {
+   "name": "地灵星",
+   "person": "安道全",
+   "type": "di",
+   "idx": 20,
+   "title": "灵机",
+   "effect_type": "heal_percent",
+   "value": 10,
+   "text": "恢复自身 10% 现金"
+  },
+  {
+   "name": "地兽星",
+   "person": "",
+   "type": "di",
+   "idx": 21,
+   "title": "兽性",
+   "effect_type": "move",
+   "value": 17,
+   "text": "前进 17 格"
+  },
+  {
+   "name": "地微星",
+   "person": "",
+   "type": "di",
+   "idx": 22,
+   "title": "微末",
+   "effect_type": "lose",
+   "value": 270,
+   "text": "损失 270"
+  },
+  {
+   "name": "地慧星",
+   "person": "",
+   "type": "di",
+   "idx": 23,
+   "title": "慧黠",
+   "effect_type": "gain",
+   "value": 600,
+   "text": "从银行领取 600"
+  },
+  {
+   "name": "地暴星",
+   "person": "",
+   "type": "di",
+   "idx": 24,
+   "title": "暴烈",
+   "effect_type": "lose",
+   "value": 600,
+   "text": "损失 600"
+  },
+  {
+   "name": "地然星",
+   "person": "",
+   "type": "di",
+   "idx": 25,
+   "title": "燃尽",
+   "effect_type": "lose",
+   "value": 410,
+   "text": "损失 410"
+  },
+  {
+   "name": "地猖星",
+   "person": "",
+   "type": "di",
+   "idx": 26,
+   "title": "猖狂",
+   "effect_type": "lose",
+   "value": 500,
+   "text": "损失 500"
+  },
+  {
+   "name": "地狂星",
+   "person": "",
+   "type": "di",
+   "idx": 27,
+   "title": "狂乱",
+   "effect_type": "random_move",
+   "value": 20,
+   "text": "随机前进 1~20 格"
+  },
+  {
+   "name": "地飞星",
+   "person": "项充",
+   "type": "di",
+   "idx": 28,
+   "title": "飞遁",
+   "effect_type": "teleport",
+   "value": 0,
+   "text": "随机传送到另一处地标"
+  },
+  {
+   "name": "地走星",
+   "person": "李衮",
+   "type": "di",
+   "idx": 29,
+   "title": "奔走",
+   "effect_type": "move",
+   "value": -10,
+   "text": "后退 3 格"
+  },
+  {
+   "name": "地巧星",
+   "person": "",
+   "type": "di",
+   "idx": 30,
+   "title": "巧手",
+   "effect_type": "gain",
+   "value": 600,
+   "text": "从银行领取 600"
+  },
+  {
+   "name": "地明星",
+   "person": "",
+   "type": "di",
+   "idx": 31,
+   "title": "明察",
+   "effect_type": "gain",
+   "value": 550,
+   "text": "从银行领取 550"
+  },
+  {
+   "name": "地进星",
+   "person": "",
+   "type": "di",
+   "idx": 32,
+   "title": "进取",
+   "effect_type": "move",
+   "value": 10,
+   "text": "前进 10 格"
+  },
+  {
+   "name": "地退星",
+   "person": "",
+   "type": "di",
+   "idx": 33,
+   "title": "退让",
+   "effect_type": "move",
+   "value": -10,
+   "text": "后退 3 格"
+  },
+  {
+   "name": "地满星",
+   "person": "",
+   "type": "di",
+   "idx": 34,
+   "title": "满盈",
+   "effect_type": "gain",
+   "value": 600,
+   "text": "从银行领取 600"
+  },
+  {
+   "name": "地遂星",
+   "person": "",
+   "type": "di",
+   "idx": 35,
+   "title": "遂心",
+   "effect_type": "gain",
+   "value": 500,
+   "text": "从银行领取 500"
+  },
+  {
+   "name": "地周星",
+   "person": "",
+   "type": "di",
+   "idx": 36,
+   "title": "周全",
+   "effect_type": "collect_all",
+   "value": 68,
+   "text": "每位对手向你支付 68"
+  },
+  {
+   "name": "地隐星",
+   "person": "",
+   "type": "di",
+   "idx": 37,
+   "title": "隐遁",
+   "effect_type": "free_rent",
+   "value": 3,
+   "text": "接下来 3 次踩中对手地皮免交过路费"
+  },
+  {
+   "name": "地异星",
+   "person": "",
+   "type": "di",
+   "idx": 38,
+   "title": "异动",
+   "effect_type": "random_swing",
+   "value": 500,
+   "text": "随机获得或损失 500"
+  },
+  {
+   "name": "地理星",
+   "person": "",
+   "type": "di",
+   "idx": 39,
+   "title": "理顺",
+   "effect_type": "gain",
+   "value": 550,
+   "text": "从银行领取 550"
+  },
+  {
+   "name": "地俊星",
+   "person": "",
+   "type": "di",
+   "idx": 40,
+   "title": "俊才",
+   "effect_type": "gain",
+   "value": 600,
+   "text": "从银行领取 600"
+  },
+  {
+   "name": "地乐星",
+   "person": "",
+   "type": "di",
+   "idx": 41,
+   "title": "乐天",
+   "effect_type": "gain",
+   "value": 480,
+   "text": "从银行领取 480"
+  },
+  {
+   "name": "地捷星",
+   "person": "",
+   "type": "di",
+   "idx": 42,
+   "title": "捷径",
+   "effect_type": "move",
+   "value": 14,
+   "text": "前进 14 格"
+  },
+  {
+   "name": "地速星",
+   "person": "",
+   "type": "di",
+   "idx": 43,
+   "title": "速行",
+   "effect_type": "move",
+   "value": 17,
+   "text": "前进 17 格"
+  },
+  {
+   "name": "地镇星",
+   "person": "",
+   "type": "di",
+   "idx": 44,
+   "title": "镇压",
+   "effect_type": "jail_random",
+   "value": 0,
+   "text": "随机把一名对手送进监狱"
+  },
+  {
+   "name": "地稽星",
+   "person": "",
+   "type": "di",
+   "idx": 45,
+   "title": "稽留",
+   "effect_type": "skip_turn",
+   "value": 3,
+   "text": "本回合跳过掷骰"
+  },
+  {
+   "name": "地魔星",
+   "person": "宋万",
+   "type": "di",
+   "idx": 46,
+   "title": "魔障",
+   "effect_type": "heal_percent",
+   "value": 10,
+   "text": "恢复自身 10% 现金"
+  },
+  {
+   "name": "地妖星",
+   "person": "",
+   "type": "di",
+   "idx": 47,
+   "title": "妖异",
+   "effect_type": "lose",
+   "value": 700,
+   "text": "损失 700"
+  },
+  {
+   "name": "地幽星",
+   "person": "",
+   "type": "di",
+   "idx": 48,
+   "title": "幽闭",
+   "effect_type": "goto_jail",
+   "value": 0,
+   "text": "直接进入监狱"
+  },
+  {
+   "name": "地伏星",
+   "person": "",
+   "type": "di",
+   "idx": 49,
+   "title": "潜伏",
+   "effect_type": "lose",
+   "value": 370,
+   "text": "损失 370"
+  },
+  {
+   "name": "地僻星",
+   "person": "李忠",
+   "type": "di",
+   "idx": 50,
+   "title": "偏僻",
+   "effect_type": "lose_percent",
+   "value": 5,
+   "text": "扣除自身 5% 现金给银行"
+  },
+  {
+   "name": "地空星",
+   "person": "",
+   "type": "di",
+   "idx": 51,
+   "title": "空耗",
+   "effect_type": "lose",
+   "value": 600,
+   "text": "损失 600"
+  },
+  {
+   "name": "地孤星",
+   "person": "",
+   "type": "di",
+   "idx": 52,
+   "title": "孤立",
+   "effect_type": "isolate",
+   "value": 3,
+   "text": "本回合对手无法与你交易"
+  },
+  {
+   "name": "地全星",
+   "person": "",
+   "type": "di",
+   "idx": 53,
+   "title": "全备",
+   "effect_type": "gain",
+   "value": 650,
+   "text": "从银行领取 650"
+  },
+  {
+   "name": "地短星",
+   "person": "邹渊",
+   "type": "di",
+   "idx": 54,
+   "title": "短视",
+   "effect_type": "mortgage_freeze",
+   "value": 7,
+   "text": "指定一块地皮停止收租 7 回合"
+  },
+  {
+   "name": "地角星",
+   "person": "邹润",
+   "type": "di",
+   "idx": 55,
+   "title": "角力",
+   "effect_type": "mortgage_freeze",
+   "value": 7,
+   "text": "指定一块地皮停止收租 7 回合"
+  },
+  {
+   "name": "地囚星",
+   "person": "朱贵",
+   "type": "di",
+   "idx": 56,
+   "title": "囚禁",
+   "effect_type": "steal_percent",
+   "value": 8,
+   "text": "随机偷取一名对手 8% 现金"
+  },
+  {
+   "name": "地藏星",
+   "person": "朱富",
+   "type": "di",
+   "idx": 57,
+   "title": "藏富",
+   "effect_type": "mortgage_freeze",
+   "value": 7,
+   "text": "指定一块地皮停止收租 7 回合"
+  },
+  {
+   "name": "地平星",
+   "person": "",
+   "type": "di",
+   "idx": 58,
+   "title": "平顺",
+   "effect_type": "gain",
+   "value": 500,
+   "text": "从银行领取 500"
+  },
+  {
+   "name": "地损星",
+   "person": "蔡庆",
+   "type": "di",
+   "idx": 59,
+   "title": "损耗",
+   "effect_type": "lose_percent",
+   "value": 5,
+   "text": "扣除自身 5% 现金给银行"
+  },
+  {
+   "name": "地奴星",
+   "person": "李立",
+   "type": "di",
+   "idx": 60,
+   "title": "奴役",
+   "effect_type": "steal_percent",
+   "value": 8,
+   "text": "随机偷取一名对手 8% 现金"
+  },
+  {
+   "name": "地察星",
+   "person": "",
+   "type": "di",
+   "idx": 61,
+   "title": "察知",
+   "effect_type": "gain",
+   "value": 600,
+   "text": "从银行领取 600"
+  },
+  {
+   "name": "地恶星",
+   "person": "焦挺",
+   "type": "di",
+   "idx": 62,
+   "title": "恶果",
+   "effect_type": "lose",
+   "value": 700,
+   "text": "损失 700"
+  },
+  {
+   "name": "地丑星",
+   "person": "石勇",
+   "type": "di",
+   "idx": 63,
+   "title": "丑态",
+   "effect_type": "lose",
+   "value": 700,
+   "text": "损失 700"
+  },
+  {
+   "name": "地数星",
+   "person": "",
+   "type": "di",
+   "idx": 64,
+   "title": "数算",
+   "effect_type": "gain",
+   "value": 550,
+   "text": "从银行领取 550"
+  },
+  {
+   "name": "地阴星",
+   "person": "顾大嫂",
+   "type": "di",
+   "idx": 65,
+   "title": "阴寒",
+   "effect_type": "mutual_debuff",
+   "value": 3,
+   "text": "自己与对手下回合都只能走 3 步"
+  },
+  {
+   "name": "地刑星",
+   "person": "张青",
+   "type": "di",
+   "idx": 66,
+   "title": "刑伤",
+   "effect_type": "lose_percent",
+   "value": 5,
+   "text": "扣除自身 5% 现金给银行"
+  },
+  {
+   "name": "地壮星",
+   "person": "孙二娘",
+   "type": "di",
+   "idx": 67,
+   "title": "强壮",
+   "effect_type": "mutual_debuff",
+   "value": 3,
+   "text": "自己与对手下回合都只能走 3 步"
+  },
+  {
+   "name": "地劣星",
+   "person": "王定六",
+   "type": "di",
+   "idx": 68,
+   "title": "劣运",
+   "effect_type": "limit_move",
+   "value": 7,
+   "text": "指定对手下回合只能走 7 步"
+  },
+  {
+   "name": "地健星",
+   "person": "郁保四",
+   "type": "di",
+   "idx": 69,
+   "title": "健行",
+   "effect_type": "limit_move",
+   "value": 7,
+   "text": "指定对手下回合只能走 7 步"
+  },
+  {
+   "name": "地耗星",
+   "person": "白胜",
+   "type": "di",
+   "idx": 70,
+   "title": "耗损",
+   "effect_type": "steal_percent",
+   "value": 8,
+   "text": "随机偷取一名对手 8% 现金"
+  },
+  {
+   "name": "地贼星",
+   "person": "时迁",
+   "type": "di",
+   "idx": 71,
+   "title": "偷盗",
+   "effect_type": "steal_percent",
+   "value": 8,
+   "text": "随机偷取一名对手 8% 现金"
+  },
+  {
+   "name": "地狗星",
+   "person": "段景住",
+   "type": "di",
+   "idx": 72,
+   "title": "晦气",
+   "effect_type": "limit_move",
+   "value": 7,
+   "text": "指定对手下回合只能走 7 步"
+  }
+ ]
+}

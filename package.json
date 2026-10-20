@@ -1,0 +1,17 @@
+{
+  "name": "feiyu-monopoly-3d",
+  "private": true,
+  "version": "1.12.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5180",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 5181"
+  },
+  "dependencies": {
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "vite": "^7.3.4"
+  }
+}
