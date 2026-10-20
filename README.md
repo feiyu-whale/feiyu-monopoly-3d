@@ -75,16 +75,19 @@
 
 > **注**：底层数据引擎与数值逻辑**已全部实现并开源保留**，可通过全局配置开启「硬核修罗场模式」，体验极致的策略压力。
 
-要接回来，打开 `src/compat.js` 里 `loadLegacy()` 中被注释的几行即可：
+要接回来，只需把 `src/compat.js` 里 `loadLegacy()` 中的**一个开关**改成 `true`：
 
 ```js
 // src/compat.js -> loadLegacy()
-// await import('./legacy/encounter.js');      // 奇遇（6 条，30% 出现）
-// await import('./legacy/boon.js');           // 天罡地煞赐福（13 条，全员投票）
-// await import('./legacy/stars_engine.js');   // 108 星宿（天罡 36 + 地煞 72）
-// await import('./legacy/stars_rank.js');     // 升星 / 核弹 / 绝版
-// await import('./legacy/cn_cards.js');       // 武将 10 + 神明 10 + 机制卡 8
-// await import('./legacy/cards.js');          // 旧机会 / 命运卡
+var HARDCORE_MODE = false;   // ← 改成 true，整套旧卡牌即刻回归
+
+if (HARDCORE_MODE) {
+  await import('./legacy/encounter.js');      // 奇遇（6 条，30% 出现）
+  await import('./legacy/boon.js');           // 天罡地煞赐福（13 条，全员投票）
+  await import('./legacy/stars_engine.js');   // 108 星宿（天罡 36 + 地煞 72）
+  await import('./legacy/stars_rank.js');     // 升星 / 核弹 / 绝版
+  await import('./legacy/cn_cards.js');       // 武将 10 + 神明 10 + 机制卡 8
+}
 ```
 
 **两套体系并存**：旧卡牌（星宿/武将/神明）与新的玄枢（六法门占卜）互不冲突，

@@ -214,13 +214,19 @@ export function installCompat(game, world, hooks = {}) {
        * 新接：oracle.js —— 玄枢机会 / 命运（时间 → SHA-256 → 卦签 → 吉凶）
        * ============================================================ */
 
-      // ---- 旧体系（已断开，保留代码不删）----
-      // await import('./legacy/encounter.js');
-      // await import('./legacy/boon.js');
-      // await import('./legacy/stars_engine.js');
-      // await import('./legacy/stars_rank.js');
-      // await import('./legacy/cn_cards.js');
-      // await import('./legacy/cards.js');
+      // ---- 旧体系：硬核修罗场开关（默认关）----
+      // 为什么默认关：加上星宿/武将/神明/赐福/奇遇之后，单局信息量太大，玩起来太麻烦。
+      // 想开就改下面这一个 true，整套旧卡牌就回来；改回 false 即关闭。
+      var HARDCORE_MODE = false;
+
+      if (HARDCORE_MODE) {
+        await import('./legacy/encounter.js');      // 奇遇（6 条，30% 出现）
+        await import('./legacy/boon.js');           // 天罡地煞赐福（13 条，全员投票）
+        await import('./legacy/stars_engine.js');   // 108 星宿（天罡 36 + 地煞 72）
+        await import('./legacy/stars_rank.js');     // 升星 / 核弹 / 绝版
+        await import('./legacy/cn_cards.js');       // 武将 10 + 神明 10 + 机制卡 8
+        log('硬核修罗场模式已开启：星宿 / 武将 / 神明 / 赐福 / 奇遇 全部加载');
+      }
 
       // ---- 新体系：玄枢机会 / 命运 ----
       try {
